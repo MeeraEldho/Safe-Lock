@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Safe Lock Puzzle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #222;
+            color: white;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .secrets-panel {
+            background: #444;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+            width: 200px;
+            text-align: left;
+        }
+
+        .safe-container {
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            width: 300px;
+            position: relative;
+        }
+
+        input, select, textarea {
+            width: 80%;
+            padding: 8px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        button {
+            background: #4caf50;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .hidden {
+            display: none;
+            color: yellow;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        #alarm {
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: none;
+        }
+
+        #secretMessage {
+            display: none;
+            background: #111;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 5px;
+            color: cyan;
+        }
+
+        /* 🔒 Lock Animation */
+        .lock-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .lock-icon {
+            font-size: 50px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .unlock-animation {
+            animation: unlockEffect 1.5s infinite alternate;
+        }
+
+        @keyframes unlockEffect {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(10deg) scale(1.2); }
+            100% { transform: rotate(-10deg) scale(1.2); }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="secrets-panel">
+            <h3>Saved Secrets</h3>
+            <select id="secretsList"></select>
+        </div>
+
+        <div class="safe-container">
+            <h2>🔐 Safe Lock Puzzle</h2>
+            <div id="alarm"></div>
+
+            <!-- Lock Animation -->
+            <div class="lock-container">
+                <div id="lockIcon" class="lock-icon">🔒</div>
+            </div>
+            
+            <input type="text" id="secretTitle" placeholder="Enter Secret Title">
+            <input type="number" id="codeInput" placeholder="Enter Code">
+            <button onclick="unlockSafe()">Unlock</button>
+            <p id="message" class="hidden">🎉 Secret Unlocked!</p>
+            <div id="secretMessage"></div>
+
+            <hr>
+            <h3>Add New Secret</h3>
+            <input type="text" id="newSecret" placeholder="Secret Title">
+            <input type="number" id="newCode" placeholder="Enter Code">
+            <textarea id="newSecretMessage" placeholder="Enter Secret Message"></textarea>
+            <button onclick="addSecret()">Save Secret</button>
+        </div>
+    </div>
+
+    <audio id="alertSound" src="opening_small_safe-87536.mp3"></audio>
+    <audio id="unlockSound" src="opening_small_safe-87536.mp3"></audio>
+
+    <script src="safe lock.js"></script>
+</body>
+</html>
+
+
+
